@@ -63,7 +63,7 @@ The script is designed to work with a file named `books.csv`. This file should c
 Upon completion, the script will:
 
 1.  Print a summary of the applied filters to the console.
-2.  Display the **Top 10** ranked recommendations directly in the terminal.
+2.  Display the recommendations directly in the terminal.
 3.  Save the **full list** of matching, sorted recommendations to a new file named `results.csv` in the same directory.
 
 ---
