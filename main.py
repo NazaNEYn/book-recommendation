@@ -56,6 +56,7 @@ year_input = int(
 # ----------- logic -------------
 final_mask = ~df["title"].isna()
 
+# Page Filter
 if less_greater == ">=":
     page_filter = df["num_pages"] >= book_Length
     print(f"Filter 1: Books with >= {book_Length} pages.")
@@ -65,6 +66,7 @@ else:
 
 final_mask = final_mask & page_filter
 
+# Rating Filter
 if rating_input == 0:
     print("Skipping rating filter.")
     pass
@@ -72,7 +74,7 @@ else:
     rating_filter = df["average_rating"] >= rating_input
     final_mask = final_mask & rating_filter
 
-
+# Year Filter
 if year_input == 0:
     print("Skipping year filter.")
     pass
@@ -80,6 +82,7 @@ else:
     year_filter = df["publication_year"] >= year_input
     final_mask = final_mask & year_filter
 
+# Apply the single final mask
 df = df[final_mask]
 
 # Sort the DataFrame: Primary sort by average_rating (highest first), secondary by ratings_count (highest first)
@@ -87,7 +90,6 @@ recommendations = df.sort_values(
     by=["average_rating", "publication_year", "num_pages"],
     ascending=[False, False, False],  # False means descending order (highest to lowest)
 )
-
 
 # Write the results to a new CSV file
 recommendations.to_csv("results.csv", index=False)
